@@ -1,0 +1,704 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://Resources/Art/Coots_Idle.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Art/Coots_Run.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Art/Coots_Jump.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Coots.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Gun.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Resources/Art/Coots_Hurt.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Themes/SmallTextTheme.tres" type="Theme" id=8]
+[ext_resource path="res://Resources/Art/Coin.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Themes/LargeTextTheme.tres" type="Theme" id=10]
+[ext_resource path="res://Resources/Art/Items.png" type="Texture" id=11]
+[ext_resource path="res://Scripts/DialogueBox.gd" type="Script" id=12]
+[ext_resource path="res://Resources/Art/Viewers.png" type="Texture" id=13]
+[ext_resource path="res://Resources/Sounds/Jump.wav" type="AudioStream" id=14]
+[ext_resource path="res://Resources/Sounds/Get_item.wav" type="AudioStream" id=15]
+[ext_resource path="res://Resources/Sounds/Hurt.wav" type="AudioStream" id=16]
+[ext_resource path="res://Resources/Art/LudJam.png" type="Texture" id=17]
+[ext_resource path="res://Scripts/Stage.gd" type="Script" id=18]
+[ext_resource path="res://Resources/Sounds/Yippee.wav" type="AudioStream" id=19]
+[ext_resource path="res://Resources/Sounds/Eric Skiff - Underclocked (underunderclocked mix).mp3" type="AudioStream" id=20]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 7 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "Hurt"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CootsHurt:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+length = 1.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Jump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Jump:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Yippee:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1e-05, 1e-05, 1e-05, 1e-05 ),
+"update": 0,
+"values": [ Vector2( 0, -6 ), Vector2( 0, -4 ), Vector2( 0, -2 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Run:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Jump:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CootsHurt:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Yippee:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -6 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Run"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Run:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Popup"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 5.5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -160, 210 ), Vector2( -160, 78 ), Vector2( -160, 78 ), Vector2( -160, 210 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -160, 210 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Damage"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D/Heart:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -234, -174 ), Vector2( -225, -170 ), Vector2( -229, -181 ), Vector2( -243, -175 ), Vector2( -234, -174 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D/Heart:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -239, -197 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera2D/Heart:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -234, -174 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Heal"
+length = 1.5
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "heal_amount"
+} ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Yip"
+length = 15.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("../..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 10 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "finish_yippee"
+} ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Shoot"
+length = 0.2
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath("Gun")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot_hold"
+} ]
+}
+
+[node name="Coots" type="KinematicBody2D"]
+z_index = 2
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -7 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hurt = SubResource( 9 )
+anims/Idle = SubResource( 2 )
+anims/Jump = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+anims/Run = SubResource( 5 )
+
+[node name="Idle" type="Sprite" parent="."]
+position = Vector2( 0, -16 )
+texture = ExtResource( 1 )
+hframes = 8
+
+[node name="Jump" type="Sprite" parent="."]
+position = Vector2( 0, -16 )
+texture = ExtResource( 3 )
+hframes = 4
+
+[node name="Run" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -16 )
+texture = ExtResource( 2 )
+hframes = 4
+
+[node name="CootsHurt" type="Sprite" parent="."]
+position = Vector2( 0, -16 )
+texture = ExtResource( 7 )
+
+[node name="Yippee" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -6 )
+texture = ExtResource( 11 )
+offset = Vector2( 8, -14 )
+hframes = 13
+frame = 8
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -18 )
+current = true
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+margin_left = -236.0
+margin_top = -170.0
+margin_right = -64.0
+margin_bottom = -122.0
+color = Color( 0.592157, 0.592157, 0.592157, 0.196078 )
+
+[node name="ColorRect2" type="ColorRect" parent="Camera2D"]
+margin_left = 128.0
+margin_top = -170.0
+margin_right = 227.0
+margin_bottom = -46.0
+color = Color( 0.592157, 0.592157, 0.592157, 0.196078 )
+
+[node name="Items" type="Sprite" parent="Camera2D/ColorRect2"]
+position = Vector2( 20, 20 )
+texture = ExtResource( 11 )
+hframes = 13
+
+[node name="Items2" type="Sprite" parent="Camera2D/ColorRect2"]
+position = Vector2( 48, 20 )
+texture = ExtResource( 11 )
+hframes = 13
+
+[node name="Items3" type="Sprite" parent="Camera2D/ColorRect2"]
+position = Vector2( 76, 20 )
+texture = ExtResource( 11 )
+hframes = 13
+
+[node name="Items4" type="Sprite" parent="Camera2D/ColorRect2"]
+position = Vector2( 20, 48 )
+texture = ExtResource( 11 )
+hframes = 13
+
+[node name="Items5" type="Sprite" parent="Camera2D/ColorRect2"]
+position = Vector2( 48, 48 )
+texture = ExtResource( 11 )
+hframes = 13
+
+[node name="Items6" type="Sprite" parent="Camera2D/ColorRect2"]
+position = Vector2( 76, 48 )
+texture = ExtResource( 11 )
+hframes = 13
+
+[node name="Items7" type="Sprite" parent="Camera2D/ColorRect2"]
+position = Vector2( 20, 76 )
+texture = ExtResource( 11 )
+hframes = 13
+
+[node name="Items8" type="Sprite" parent="Camera2D/ColorRect2"]
+position = Vector2( 48, 76 )
+texture = ExtResource( 11 )
+hframes = 13
+
+[node name="Items9" type="Sprite" parent="Camera2D/ColorRect2"]
+position = Vector2( 76, 76 )
+texture = ExtResource( 11 )
+hframes = 13
+
+[node name="Items10" type="Sprite" parent="Camera2D/ColorRect2"]
+position = Vector2( 20, 104 )
+texture = ExtResource( 11 )
+hframes = 13
+
+[node name="Items11" type="Sprite" parent="Camera2D/ColorRect2"]
+position = Vector2( 48, 104 )
+texture = ExtResource( 11 )
+hframes = 13
+
+[node name="Items12" type="Sprite" parent="Camera2D/ColorRect2"]
+position = Vector2( 76, 104 )
+texture = ExtResource( 11 )
+hframes = 13
+
+[node name="Label" type="Label" parent="Camera2D/ColorRect2"]
+margin_left = 8.0
+margin_top = 24.0
+margin_right = 20.0
+margin_bottom = 38.0
+theme = ExtResource( 8 )
+
+[node name="Label2" type="Label" parent="Camera2D/ColorRect2"]
+margin_left = 36.0
+margin_top = 24.0
+margin_right = 48.0
+margin_bottom = 38.0
+theme = ExtResource( 8 )
+
+[node name="Label3" type="Label" parent="Camera2D/ColorRect2"]
+margin_left = 64.0
+margin_top = 24.0
+margin_right = 76.0
+margin_bottom = 38.0
+theme = ExtResource( 8 )
+
+[node name="Label4" type="Label" parent="Camera2D/ColorRect2"]
+margin_left = 8.0
+margin_top = 52.0
+margin_right = 20.0
+margin_bottom = 66.0
+theme = ExtResource( 8 )
+
+[node name="Label5" type="Label" parent="Camera2D/ColorRect2"]
+margin_left = 36.0
+margin_top = 52.0
+margin_right = 48.0
+margin_bottom = 66.0
+theme = ExtResource( 8 )
+
+[node name="Label6" type="Label" parent="Camera2D/ColorRect2"]
+margin_left = 64.0
+margin_top = 52.0
+margin_right = 76.0
+margin_bottom = 66.0
+theme = ExtResource( 8 )
+
+[node name="Label7" type="Label" parent="Camera2D/ColorRect2"]
+margin_left = 8.0
+margin_top = 80.0
+margin_right = 20.0
+margin_bottom = 94.0
+theme = ExtResource( 8 )
+
+[node name="Label8" type="Label" parent="Camera2D/ColorRect2"]
+margin_left = 36.0
+margin_top = 80.0
+margin_right = 48.0
+margin_bottom = 94.0
+theme = ExtResource( 8 )
+
+[node name="Label9" type="Label" parent="Camera2D/ColorRect2"]
+margin_left = 64.0
+margin_top = 80.0
+margin_right = 76.0
+margin_bottom = 94.0
+theme = ExtResource( 8 )
+
+[node name="Label10" type="Label" parent="Camera2D/ColorRect2"]
+margin_left = 8.0
+margin_top = 108.0
+margin_right = 20.0
+margin_bottom = 122.0
+theme = ExtResource( 8 )
+
+[node name="Label11" type="Label" parent="Camera2D/ColorRect2"]
+margin_left = 36.0
+margin_top = 108.0
+margin_right = 48.0
+margin_bottom = 122.0
+theme = ExtResource( 8 )
+
+[node name="Label12" type="Label" parent="Camera2D/ColorRect2"]
+margin_left = 64.0
+margin_top = 108.0
+margin_right = 76.0
+margin_bottom = 122.0
+theme = ExtResource( 8 )
+
+[node name="DialogueBox" type="ColorRect" parent="Camera2D"]
+margin_left = -160.0
+margin_top = 210.0
+margin_right = 160.0
+margin_bottom = 302.0
+color = Color( 0.592157, 0.592157, 0.592157, 0.196078 )
+script = ExtResource( 12 )
+
+[node name="Title" type="Label" parent="Camera2D/DialogueBox"]
+margin_left = 68.0
+margin_top = 12.0
+margin_right = 160.0
+margin_bottom = 40.0
+theme = ExtResource( 10 )
+text = "Item:"
+
+[node name="Blurb" type="Label" parent="Camera2D/DialogueBox"]
+margin_left = 68.0
+margin_top = 64.0
+margin_right = 316.0
+margin_bottom = 84.0
+theme = ExtResource( 8 )
+custom_colors/font_color = Color( 0.282353, 0.282353, 0.282353, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 0 )
+text = "Item:"
+autowrap = true
+
+[node name="Content" type="Label" parent="Camera2D/DialogueBox"]
+margin_left = 68.0
+margin_top = 32.0
+margin_right = 296.0
+margin_bottom = 64.0
+theme = ExtResource( 8 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 0 )
+text = "Item Description"
+autowrap = true
+
+[node name="Graphic" type="Sprite" parent="Camera2D/DialogueBox"]
+position = Vector2( 12, 16 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 11 )
+centered = false
+hframes = 13
+
+[node name="DiagAnim" type="AnimationPlayer" parent="Camera2D/DialogueBox"]
+anims/Popup = SubResource( 10 )
+anims/RESET = SubResource( 11 )
+
+[node name="GetItem" type="AudioStreamPlayer" parent="Camera2D/DialogueBox"]
+stream = ExtResource( 15 )
+
+[node name="LudJam" type="Sprite" parent="Camera2D"]
+position = Vector2( -200, 156 )
+scale = Vector2( 0.121212, 0.121212 )
+z_index = 3
+texture = ExtResource( 17 )
+
+[node name="Heart" parent="Camera2D" instance=ExtResource( 6 )]
+position = Vector2( -234, -174 )
+
+[node name="Sprite" type="Sprite" parent="Camera2D"]
+position = Vector2( -50, -77 )
+
+[node name="TimeRect" type="ColorRect" parent="Camera2D"]
+margin_left = -56.0
+margin_top = -170.0
+margin_right = 56.0
+margin_bottom = -130.0
+color = Color( 0.396078, 0.396078, 0.396078, 1 )
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Camera2D/TimeRect"]
+margin_right = 112.0
+margin_bottom = 40.0
+border_color = Color( 0, 0, 0, 1 )
+border_width = 1.8
+editor_only = false
+
+[node name="TimeLab" type="Label" parent="Camera2D/TimeRect"]
+margin_left = 34.0
+margin_top = 18.0
+margin_right = 77.0
+margin_bottom = 37.0
+theme = ExtResource( 10 )
+text = "0:0:0"
+
+[node name="Label" type="Label" parent="Camera2D/TimeRect/TimeLab"]
+margin_left = -50.0
+margin_top = -14.0
+margin_right = 98.0
+margin_bottom = -2.0
+theme = ExtResource( 8 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 0 )
+text = "Fight Ludwig in:"
+align = 1
+autowrap = true
+
+[node name="Viewers" type="Sprite" parent="Camera2D"]
+position = Vector2( -224, -84 )
+z_index = 2
+texture = ExtResource( 13 )
+
+[node name="Viewcount" type="Label" parent="Camera2D/Viewers"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 44.0
+margin_bottom = 31.0
+theme = ExtResource( 8 )
+text = "0
+"
+
+[node name="Coin2" type="Sprite" parent="Camera2D/Viewers"]
+position = Vector2( 0, -26 )
+scale = Vector2( 2.75, 2.66667 )
+texture = ExtResource( 9 )
+
+[node name="Coin" type="Label" parent="Camera2D/Viewers"]
+margin_left = 2.75
+margin_top = -23.3333
+margin_right = 31.75
+margin_bottom = 3.66669
+theme = ExtResource( 8 )
+text = "0
+"
+
+[node name="Stage" type="Label" parent="Camera2D"]
+margin_left = 72.0
+margin_top = -164.0
+margin_right = 112.0
+margin_bottom = -150.0
+theme = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 0.917647, 0.388235, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Stage:"
+script = ExtResource( 18 )
+
+[node name="StageNum" type="Label" parent="Camera2D/Stage"]
+margin_top = 14.0
+margin_right = 40.0
+margin_bottom = 28.0
+text = "1"
+align = 1
+
+[node name="StageNum2" type="Label" parent="Camera2D/Stage"]
+visible = false
+modulate = Color( 0.839216, 0, 0, 1 )
+margin_top = 14.0
+margin_right = 40.0
+margin_bottom = 28.0
+text = "FIGHT"
+align = 1
+
+[node name="Gun" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, -23 )
+
+[node name="UIAnim" type="AnimationPlayer" parent="."]
+anims/Damage = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+
+[node name="Health" type="AnimationPlayer" parent="."]
+root_node = NodePath("../UIAnim")
+anims/Heal = SubResource( 8 )
+
+[node name="Yippees" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Jumpin/Yippees")
+anims/Yip = SubResource( 12 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.1
+autostart = true
+
+[node name="Jumpin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+bus = "SFX"
+
+[node name="Yippees" type="AudioStreamPlayer" parent="Jumpin"]
+stream = ExtResource( 19 )
+volume_db = -6.686
+
+[node name="Hurtin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+bus = "SFX"
+
+[node name="Normal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+volume_db = -5.301
+
+[node name="Shoot" type="AnimationPlayer" parent="."]
+anims/Shoot = SubResource( 13 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 155.0
+margin_top = 131.0
+margin_right = 234.0
+margin_bottom = 158.0
+theme = ExtResource( 8 )
+text = "(K) Shoot
+(L) Interact"
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

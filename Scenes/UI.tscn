@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Heart.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/UI.gd" type="Script" id=2]
+[ext_resource path="res://Resources/Fonts/WackyPixels.tres" type="DynamicFont" id=3]
+
+[sub_resource type="Theme" id=1]
+HBoxContainer/constants/separation = 4
+Label/colors/font_color = Color( 1, 1, 1, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+Label/constants/line_spacing = 3
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/fonts/font = ExtResource( 3 )
+Label/styles/normal = null
+MarginContainer/constants/margin_bottom = 0
+MarginContainer/constants/margin_left = 0
+MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_top = 0
+
+[node name="UI" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2( 4, 18 )
+z_index = 8
+
+[node name="Label" type="Label" parent="Node2D2"]
+margin_right = 31.0
+margin_bottom = 12.0
+theme = SubResource( 1 )
+
+[node name="Heart13" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 147, 47 )
+z_index = 6
+
+[node name="Heart12" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 123, 47 )
+z_index = 6
+
+[node name="Heart11" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 99, 47 )
+z_index = 6
+
+[node name="Heart10" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 75, 47 )
+z_index = 6
+
+[node name="Heart8" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 27, 47 )
+z_index = 6
+
+[node name="Heart9" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 51, 47 )
+z_index = 6
+
+[node name="Heart7" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 3, 47 )
+z_index = 6
+
+[node name="Heart6" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 147, 23 )
+z_index = 6
+
+[node name="Heart5" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 123, 23 )
+z_index = 6
+
+[node name="Heart4" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 99, 23 )
+z_index = 6
+
+[node name="Heart3" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 75, 23 )
+z_index = 6
+
+[node name="Heart2" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 51, 23 )
+z_index = 6
+
+[node name="Heart1" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 27, 23 )
+z_index = 6
+
+[node name="Heart" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 3, 23 )
+z_index = 6
