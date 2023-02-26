@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PMM-Vivaldi-Winter-MASTER_V1.wav-4271f2ebb47913a0f3cdf0e9ea621ee4.sample"
+
+[deps]
+
+source_file="res://Resources/Sounds/PMM-Vivaldi-Winter-MASTER_V1.wav"
+dest_files=[ "res://.import/PMM-Vivaldi-Winter-MASTER_V1.wav-4271f2ebb47913a0f3cdf0e9ea621ee4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
